@@ -38,6 +38,10 @@ public class vCenterConfiguration extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private String datacenterManagedObjectId;
 
+    @JsonProperty("deactivate_vm_discovery")
+    @JsonInclude(Include.NON_NULL)
+    private Boolean deactivateVmDiscovery;
+
     @JsonProperty("is_nsx_environment")
     @JsonInclude(Include.NON_NULL)
     private Boolean isNsxEnvironment = false;
@@ -150,6 +154,32 @@ public class vCenterConfiguration extends AviRestResource {
   @VsoMethod
   public void setDatacenterManagedObjectId(String  datacenterManagedObjectId) {
     this.datacenterManagedObjectId = datacenterManagedObjectId;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * If true, vm's on the vcenter will not be discovered.set it to true if there are more than 10000 vms in the datacenter.
+   * Field deprecated in 30.1.1.
+   * Field introduced in 20.1.5.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * @return deactivateVmDiscovery
+   */
+  @VsoMethod
+  public Boolean getDeactivateVmDiscovery() {
+    return deactivateVmDiscovery;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * If true, vm's on the vcenter will not be discovered.set it to true if there are more than 10000 vms in the datacenter.
+   * Field deprecated in 30.1.1.
+   * Field introduced in 20.1.5.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * @param deactivateVmDiscovery set the deactivateVmDiscovery.
+   */
+  @VsoMethod
+  public void setDeactivateVmDiscovery(Boolean  deactivateVmDiscovery) {
+    this.deactivateVmDiscovery = deactivateVmDiscovery;
   }
 
   /**
@@ -397,6 +427,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.managementNetwork, objvCenterConfiguration.managementNetwork)&&
   Objects.equals(this.managementIpSubnet, objvCenterConfiguration.managementIpSubnet)&&
   Objects.equals(this.vcenterTemplateSeLocation, objvCenterConfiguration.vcenterTemplateSeLocation)&&
+  Objects.equals(this.deactivateVmDiscovery, objvCenterConfiguration.deactivateVmDiscovery)&&
   Objects.equals(this.useContentLib, objvCenterConfiguration.useContentLib)&&
   Objects.equals(this.contentLib, objvCenterConfiguration.contentLib)&&
   Objects.equals(this.isNsxEnvironment, objvCenterConfiguration.isNsxEnvironment)&&
@@ -410,6 +441,7 @@ public String toString() {
       sb.append("    contentLib: ").append(toIndentedString(contentLib)).append("\n");
         sb.append("    datacenter: ").append(toIndentedString(datacenter)).append("\n");
         sb.append("    datacenterManagedObjectId: ").append(toIndentedString(datacenterManagedObjectId)).append("\n");
+        sb.append("    deactivateVmDiscovery: ").append(toIndentedString(deactivateVmDiscovery)).append("\n");
         sb.append("    isNsxEnvironment: ").append(toIndentedString(isNsxEnvironment)).append("\n");
         sb.append("    managementIpSubnet: ").append(toIndentedString(managementIpSubnet)).append("\n");
         sb.append("    managementNetwork: ").append(toIndentedString(managementNetwork)).append("\n");

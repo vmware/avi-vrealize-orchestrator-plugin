@@ -24,6 +24,10 @@ import org.springframework.stereotype.Service;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class CRL extends AviRestResource {
+    @JsonProperty("body")
+    @JsonInclude(Include.NON_NULL)
+    private String body;
+
     @JsonProperty("common_name")
     @JsonInclude(Include.NON_NULL)
     private String commonName;
@@ -65,6 +69,32 @@ public class CRL extends AviRestResource {
     private Integer updateInterval = 1440;
 
 
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Certificate revocation list from a given issuer in pem format.
+   * This can either be configured directly or via the server_url.
+   * Field deprecated in 30.2.1.
+   * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+   * @return body
+   */
+  @VsoMethod
+  public String getBody() {
+    return body;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Certificate revocation list from a given issuer in pem format.
+   * This can either be configured directly or via the server_url.
+   * Field deprecated in 30.2.1.
+   * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+   * @param body set the body.
+   */
+  @VsoMethod
+  public void setBody(String  body) {
+    this.body = body;
+  }
 
   /**
    * This is the getter method this will return the attribute value.
@@ -334,6 +364,7 @@ public boolean equals(java.lang.Object o) {
   }
   CRL objCRL = (CRL) o;
   return   Objects.equals(this.serverUrl, objCRL.serverUrl)&&
+  Objects.equals(this.body, objCRL.body)&&
   Objects.equals(this.lastUpdate, objCRL.lastUpdate)&&
   Objects.equals(this.nextUpdate, objCRL.nextUpdate)&&
   Objects.equals(this.updateInterval, objCRL.updateInterval)&&
@@ -349,7 +380,8 @@ public boolean equals(java.lang.Object o) {
 public String toString() {
   StringBuilder sb = new StringBuilder();
   sb.append("class CRL {\n");
-      sb.append("    commonName: ").append(toIndentedString(commonName)).append("\n");
+      sb.append("    body: ").append(toIndentedString(body)).append("\n");
+        sb.append("    commonName: ").append(toIndentedString(commonName)).append("\n");
         sb.append("    distinguishedName: ").append(toIndentedString(distinguishedName)).append("\n");
         sb.append("    etag: ").append(toIndentedString(etag)).append("\n");
         sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
