@@ -30,7 +30,7 @@ public class BotConfigClientBehavior extends AviRestResource {
 
     @JsonProperty("enabled")
     @JsonInclude(Include.NON_NULL)
-    private Boolean enabled = true;
+    private Boolean enabled = false;
 
     @JsonProperty("minimum_requests")
     @JsonInclude(Include.NON_NULL)
@@ -73,7 +73,7 @@ public class BotConfigClientBehavior extends AviRestResource {
    * Whether client behavior based bot detection is enabled.
    * Field introduced in 30.2.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @return enabled
    */
   @VsoMethod
@@ -86,7 +86,7 @@ public class BotConfigClientBehavior extends AviRestResource {
    * Whether client behavior based bot detection is enabled.
    * Field introduced in 30.2.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @param enabled set the enabled.
    */
   @VsoMethod

@@ -570,6 +570,11 @@ public class Constants {
     public static final String FINDER_VRO_JWTVALIDATIONPARAMS = "JWTValidationParams";
     public static final String FINDER_VRO_JWTVALIDATIONVSCONFIG = "JWTValidationVsConfig";
     public static final String FINDER_VRO_JOBENTRY = "JobEntry";
+    public static final String FINDER_VRO_JOURNALACTION = "JournalAction";
+    public static final String FINDER_VRO_JOURNALERROR = "JournalError";
+    public static final String FINDER_VRO_JOURNALINFO = "JournalInfo";
+    public static final String FINDER_VRO_JOURNALOBJECT = "JournalObject";
+    public static final String FINDER_VRO_JOURNALSUMMARY = "JournalSummary";
     public static final String FINDER_VRO_JWTLOG = "JwtLog";
     public static final String FINDER_VRO_KEYVALUE = "KeyValue";
     public static final String FINDER_VRO_KEYVALUETUPLE = "KeyValueTuple";
@@ -807,6 +812,7 @@ public class Constants {
     public static final String FINDER_VRO_REPORTEVENT = "ReportEvent";
     public static final String FINDER_VRO_REPORTOPSSTATE = "ReportOpsState";
     public static final String FINDER_VRO_REPORTSUMMARY = "ReportSummary";
+    public static final String FINDER_VRO_REPORTTASK = "ReportTask";
     public static final String FINDER_VRO_RESPONSEMATCHTARGET = "ResponseMatchTarget";
     public static final String FINDER_VRO_RESTOREPARAMS = "RestoreParams";
     public static final String FINDER_VRO_RESUMESEGROUPPARAMS = "ResumeSeGroupParams";
@@ -1036,6 +1042,7 @@ public class Constants {
     public static final String FINDER_VRO_TLSTICKET = "TLSTicket";
     public static final String FINDER_VRO_TACACSPLUSAUTHSETTINGS = "TacacsPlusAuthSettings";
     public static final String FINDER_VRO_TAG = "Tag";
+    public static final String FINDER_VRO_TASKJOURNAL = "TaskJournal";
     public static final String FINDER_VRO_TENANT = "Tenant";
     public static final String FINDER_VRO_TENANTCONFIGURATION = "TenantConfiguration";
     public static final String FINDER_VRO_TENANTLABEL = "TenantLabel";
