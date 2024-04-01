@@ -11,6 +11,7 @@ import com.vmware.avi.vro.model.CaseConfig;
 import com.vmware.avi.vro.model.PortalFeatureOptIn;
 import com.vmware.avi.vro.model.InventoryConfiguration;
 import com.vmware.avi.vro.model.IpReputationConfig;
+import com.vmware.avi.vro.model.OperationsConfig;
 import com.vmware.avi.vro.model.SaasLicensingInfo;
 import com.vmware.avi.vro.model.PulseServicesSessionConfig;
 import com.vmware.avi.vro.model.ProxyConfiguration;
@@ -67,6 +68,10 @@ public class ALBServicesConfig extends AviRestResource {
     @JsonProperty("name")
     @JsonInclude(Include.NON_NULL)
     private String name;
+
+    @JsonProperty("operations_config")
+    @JsonInclude(Include.NON_NULL)
+    private OperationsConfig operationsConfig;
 
     @JsonProperty("polling_interval")
     @JsonInclude(Include.NON_NULL)
@@ -338,6 +343,34 @@ public class ALBServicesConfig extends AviRestResource {
   @VsoMethod
   public void setName(String  name) {
     this.name = name;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Operations configuration.
+   * Field deprecated in 30.1.1.
+   * Field introduced in 22.1.3.
+   * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+   * edition.
+   * @return operationsConfig
+   */
+  @VsoMethod
+  public OperationsConfig getOperationsConfig() {
+    return operationsConfig;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Operations configuration.
+   * Field deprecated in 30.1.1.
+   * Field introduced in 22.1.3.
+   * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+   * edition.
+   * @param operationsConfig set the operationsConfig.
+   */
+  @VsoMethod
+  public void setOperationsConfig(OperationsConfig operationsConfig) {
+    this.operationsConfig = operationsConfig;
   }
 
   /**
@@ -714,6 +747,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.wafConfig, objALBServicesConfig.wafConfig)&&
   Objects.equals(this.caseConfig, objALBServicesConfig.caseConfig)&&
   Objects.equals(this.saasLicensingConfig, objALBServicesConfig.saasLicensingConfig)&&
+  Objects.equals(this.operationsConfig, objALBServicesConfig.operationsConfig)&&
   Objects.equals(this.tenantRef, objALBServicesConfig.tenantRef)&&
   Objects.equals(this.name, objALBServicesConfig.name)&&
   Objects.equals(this.tenantConfig, objALBServicesConfig.tenantConfig)&&
@@ -733,6 +767,7 @@ public String toString() {
         sb.append("    ipReputationConfig: ").append(toIndentedString(ipReputationConfig)).append("\n");
         sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    operationsConfig: ").append(toIndentedString(operationsConfig)).append("\n");
         sb.append("    pollingInterval: ").append(toIndentedString(pollingInterval)).append("\n");
         sb.append("    portalUrl: ").append(toIndentedString(portalUrl)).append("\n");
         sb.append("    saasLicensingConfig: ").append(toIndentedString(saasLicensingConfig)).append("\n");

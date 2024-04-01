@@ -57,6 +57,10 @@ public class AuthProfile extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private OAuthProfile oauthProfile;
 
+    @JsonProperty("pa_agent_ref")
+    @JsonInclude(Include.NON_NULL)
+    private String paAgentRef;
+
     @JsonProperty("saml")
     @JsonInclude(Include.NON_NULL)
     private SamlSettings saml;
@@ -280,6 +284,34 @@ public class AuthProfile extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Pingaccessagent uuid.
+   * It is a reference to an object of type pingaccessagent.
+   * Field deprecated in 30.2.1.
+   * Field introduced in 18.2.3.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * @return paAgentRef
+   */
+  @VsoMethod
+  public String getPaAgentRef() {
+    return paAgentRef;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Pingaccessagent uuid.
+   * It is a reference to an object of type pingaccessagent.
+   * Field deprecated in 30.2.1.
+   * Field introduced in 18.2.3.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * @param paAgentRef set the paAgentRef.
+   */
+  @VsoMethod
+  public void setPaAgentRef(String  paAgentRef) {
+    this.paAgentRef = paAgentRef;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Saml settings.
    * Field introduced in 17.2.3.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -446,6 +478,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.http, objAuthProfile.http)&&
   Objects.equals(this.tacacsPlus, objAuthProfile.tacacsPlus)&&
   Objects.equals(this.saml, objAuthProfile.saml)&&
+  Objects.equals(this.paAgentRef, objAuthProfile.paAgentRef)&&
   Objects.equals(this.jwtProfileRef, objAuthProfile.jwtProfileRef)&&
   Objects.equals(this.oauthProfile, objAuthProfile.oauthProfile)&&
   Objects.equals(this.markers, objAuthProfile.markers)&&
@@ -464,6 +497,7 @@ public String toString() {
         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    oauthProfile: ").append(toIndentedString(oauthProfile)).append("\n");
+        sb.append("    paAgentRef: ").append(toIndentedString(paAgentRef)).append("\n");
         sb.append("    saml: ").append(toIndentedString(saml)).append("\n");
         sb.append("    tacacsPlus: ").append(toIndentedString(tacacsPlus)).append("\n");
         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
