@@ -77,6 +77,10 @@ public class VipSeAssigned extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private String ref;
 
+    @JsonProperty("route_revoked_pool_down")
+    @JsonInclude(Include.NON_NULL)
+    private Boolean routeRevokedPoolDown;
+
     @JsonProperty("scalein_in_progress")
     @JsonInclude(Include.NON_NULL)
     private Boolean scaleinInProgress = false;
@@ -395,6 +399,32 @@ public class VipSeAssigned extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Vip route is revoked as pool went down.
+   * Field introduced in 30.2.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return routeRevokedPoolDown
+   */
+  @VsoMethod
+  public Boolean getRouteRevokedPoolDown() {
+    return routeRevokedPoolDown;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Vip route is revoked as pool went down.
+   * Field introduced in 30.2.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param routeRevokedPoolDown set the routeRevokedPoolDown.
+   */
+  @VsoMethod
+  public void setRouteRevokedPoolDown(Boolean  routeRevokedPoolDown) {
+    this.routeRevokedPoolDown = routeRevokedPoolDown;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @return scaleinInProgress
@@ -565,6 +595,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.scaleoutInProgress, objVipSeAssigned.scaleoutInProgress)&&
   Objects.equals(this.seReadyInProgress, objVipSeAssigned.seReadyInProgress)&&
   Objects.equals(this.snatIp6Address, objVipSeAssigned.snatIp6Address)&&
+  Objects.equals(this.routeRevokedPoolDown, objVipSeAssigned.routeRevokedPoolDown)&&
   Objects.equals(this.ref, objVipSeAssigned.ref);
 }
 
@@ -584,6 +615,7 @@ public String toString() {
         sb.append("    operStatus: ").append(toIndentedString(operStatus)).append("\n");
         sb.append("    primary: ").append(toIndentedString(primary)).append("\n");
         sb.append("    ref: ").append(toIndentedString(ref)).append("\n");
+        sb.append("    routeRevokedPoolDown: ").append(toIndentedString(routeRevokedPoolDown)).append("\n");
         sb.append("    scaleinInProgress: ").append(toIndentedString(scaleinInProgress)).append("\n");
         sb.append("    scaleoutInProgress: ").append(toIndentedString(scaleoutInProgress)).append("\n");
         sb.append("    seReadyInProgress: ").append(toIndentedString(seReadyInProgress)).append("\n");
