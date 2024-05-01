@@ -38,7 +38,7 @@ public class MemoryBalancerInfo extends AviRestResource {
 
     @JsonProperty("debug_message")
     @JsonInclude(Include.NON_NULL)
-    private String debugMessage;
+    private String debugMessage = "exceeded memory limits";
 
     @JsonProperty("limit")
     @JsonInclude(Include.NON_NULL)
@@ -63,6 +63,10 @@ public class MemoryBalancerInfo extends AviRestResource {
     @JsonProperty("process_trend")
     @JsonInclude(Include.NON_NULL)
     private String processTrend;
+
+    @JsonProperty("task_queue_length")
+    @JsonInclude(Include.NON_NULL)
+    private Integer taskQueueLength;
 
     @JsonProperty("threshold_percent")
     @JsonInclude(Include.NON_NULL)
@@ -166,7 +170,7 @@ public class MemoryBalancerInfo extends AviRestResource {
    * Holder for debug message.
    * Field introduced in 21.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * Default value when not specified in API or module is interpreted by Avi Controller as "exceeded memory limits".
    * @return debugMessage
    */
   @VsoMethod
@@ -179,7 +183,7 @@ public class MemoryBalancerInfo extends AviRestResource {
    * Holder for debug message.
    * Field introduced in 21.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * Default value when not specified in API or module is interpreted by Avi Controller as "exceeded memory limits".
    * @param debugMessage set the debugMessage.
    */
   @VsoMethod
@@ -341,6 +345,32 @@ public class MemoryBalancerInfo extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Size of the task queue usage.
+   * Field introduced in 30.2.1, 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return taskQueueLength
+   */
+  @VsoMethod
+  public Integer getTaskQueueLength() {
+    return taskQueueLength;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Size of the task queue usage.
+   * Field introduced in 30.2.1, 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param taskQueueLength set the taskQueueLength.
+   */
+  @VsoMethod
+  public void setTaskQueueLength(Integer  taskQueueLength) {
+    this.taskQueueLength = taskQueueLength;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Percent usage of the process limit.
    * Field introduced in 21.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -386,7 +416,8 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.processTrend, objMemoryBalancerInfo.processTrend)&&
   Objects.equals(this.thresholdPercent, objMemoryBalancerInfo.thresholdPercent)&&
   Objects.equals(this.debugMessage, objMemoryBalancerInfo.debugMessage)&&
-  Objects.equals(this.controllerMemoryUsagePercent, objMemoryBalancerInfo.controllerMemoryUsagePercent);
+  Objects.equals(this.controllerMemoryUsagePercent, objMemoryBalancerInfo.controllerMemoryUsagePercent)&&
+  Objects.equals(this.taskQueueLength, objMemoryBalancerInfo.taskQueueLength);
 }
 
 @Override
@@ -403,6 +434,7 @@ public String toString() {
         sb.append("    process: ").append(toIndentedString(process)).append("\n");
         sb.append("    processMode: ").append(toIndentedString(processMode)).append("\n");
         sb.append("    processTrend: ").append(toIndentedString(processTrend)).append("\n");
+        sb.append("    taskQueueLength: ").append(toIndentedString(taskQueueLength)).append("\n");
         sb.append("    thresholdPercent: ").append(toIndentedString(thresholdPercent)).append("\n");
       sb.append("}");
   return sb.toString();
