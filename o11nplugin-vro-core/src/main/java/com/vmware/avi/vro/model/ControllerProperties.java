@@ -27,6 +27,10 @@ import org.springframework.stereotype.Service;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class ControllerProperties extends AviRestResource {
+    @JsonProperty("alert_manager_use_evms")
+    @JsonInclude(Include.NON_NULL)
+    private Boolean alertManagerUseEvms = false;
+
     @JsonProperty("allow_admin_network_updates")
     @JsonInclude(Include.NON_NULL)
     private Boolean allowAdminNetworkUpdates = false;
@@ -478,6 +482,32 @@ public class ControllerProperties extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Enable to use event manager as source of eventsdisable to use log manager as source of events.
+   * Field introduced in 30.2.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
+   * @return alertManagerUseEvms
+   */
+  @VsoMethod
+  public Boolean getAlertManagerUseEvms() {
+    return alertManagerUseEvms;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Enable to use event manager as source of eventsdisable to use log manager as source of events.
+   * Field introduced in 30.2.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
+   * @param alertManagerUseEvms set the alertManagerUseEvms.
+   */
+  @VsoMethod
+  public void setAlertManagerUseEvms(Boolean  alertManagerUseEvms) {
+    this.alertManagerUseEvms = alertManagerUseEvms;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Allow non-admin tenants to update admin vrfcontext and network objects.
    * Field introduced in 18.2.7, 20.1.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -878,7 +908,7 @@ public class ControllerProperties extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Time in minutes to wait between consecutive cloud discovery cycles.
    * Allowed values are 1-1440.
-   * Field introduced in 30.2.1.
+   * Field introduced in 22.1.5, 30.2.1.
    * Unit is min.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 5.
@@ -893,7 +923,7 @@ public class ControllerProperties extends AviRestResource {
    * This is the setter method to the attribute.
    * Time in minutes to wait between consecutive cloud discovery cycles.
    * Allowed values are 1-1440.
-   * Field introduced in 30.2.1.
+   * Field introduced in 22.1.5, 30.2.1.
    * Unit is min.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 5.
@@ -934,7 +964,7 @@ public class ControllerProperties extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Time in minutes to wait between consecutive cloud reconcile cycles.
    * Allowed values are 1-1440.
-   * Field introduced in 30.2.1.
+   * Field introduced in 22.1.5, 30.2.1.
    * Unit is min.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 5.
@@ -949,7 +979,7 @@ public class ControllerProperties extends AviRestResource {
    * This is the setter method to the attribute.
    * Time in minutes to wait between consecutive cloud reconcile cycles.
    * Allowed values are 1-1440.
-   * Field introduced in 30.2.1.
+   * Field introduced in 22.1.5, 30.2.1.
    * Unit is min.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 5.
@@ -3663,14 +3693,16 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.fileobjectMaxFileVersions, objControllerProperties.fileobjectMaxFileVersions)&&
   Objects.equals(this.eventManagerProcessingTimeThreshold, objControllerProperties.eventManagerProcessingTimeThreshold)&&
   Objects.equals(this.eventManagerMaxSubscribers, objControllerProperties.eventManagerMaxSubscribers)&&
-  Objects.equals(this.eventManagerMaxGoroutines, objControllerProperties.eventManagerMaxGoroutines);
+  Objects.equals(this.eventManagerMaxGoroutines, objControllerProperties.eventManagerMaxGoroutines)&&
+  Objects.equals(this.alertManagerUseEvms, objControllerProperties.alertManagerUseEvms);
 }
 
 @Override
 public String toString() {
   StringBuilder sb = new StringBuilder();
   sb.append("class ControllerProperties {\n");
-      sb.append("    allowAdminNetworkUpdates: ").append(toIndentedString(allowAdminNetworkUpdates)).append("\n");
+      sb.append("    alertManagerUseEvms: ").append(toIndentedString(alertManagerUseEvms)).append("\n");
+        sb.append("    allowAdminNetworkUpdates: ").append(toIndentedString(allowAdminNetworkUpdates)).append("\n");
         sb.append("    allowIpForwarding: ").append(toIndentedString(allowIpForwarding)).append("\n");
         sb.append("    allowUnauthenticatedApis: ").append(toIndentedString(allowUnauthenticatedApis)).append("\n");
         sb.append("    allowUnauthenticatedNodes: ").append(toIndentedString(allowUnauthenticatedNodes)).append("\n");
