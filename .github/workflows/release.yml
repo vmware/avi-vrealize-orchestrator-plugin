@@ -29,14 +29,14 @@ jobs:
           echo "Check maven version"
           mvn -version
 
-      - name: Create Symlinks for external jars directory
-        run: |
-          echo "Create symlinks for external jars to build VRO plugin."
-          ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro/
-          echo "Created symlinks to build the core module."
-          ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro-core/
-          echo "Created symlinks to build the package module."
-          ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro-package/
+      # - name: Create Symlinks for external jars directory
+      #   run: |
+      #     echo "Create symlinks for external jars to build VRO plugin."
+      #     ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro/
+      #     echo "Created symlinks to build the core module."
+      #     ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro-core/
+      #     echo "Created symlinks to build the package module."
+      #     ln -s $GITHUB_WORKSPACE/lib/ $GITHUB_WORKSPACE/o11nplugin-vro-package/
 
       - name: Verify whether the symlink has been created.
         run: |
