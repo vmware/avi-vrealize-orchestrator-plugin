@@ -72,6 +72,10 @@ public class SystemConfiguration extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private Boolean enableCors = false;
 
+    @JsonProperty("enable_host_header_check")
+    @JsonInclude(Include.NON_NULL)
+    private Boolean enableHostHeaderCheck = false;
+
     @JsonProperty("fips_mode")
     @JsonInclude(Include.NON_NULL)
     private Boolean fipsMode = false;
@@ -131,6 +135,10 @@ public class SystemConfiguration extends AviRestResource {
     @JsonProperty("ssh_hmacs")
     @JsonInclude(Include.NON_NULL)
     private List<String> sshHmacs;
+
+    @JsonProperty("trusted_host_profiles_refs")
+    @JsonInclude(Include.NON_NULL)
+    private List<String> trustedHostProfilesRefs;
 
     @JsonProperty("url")
     @JsonInclude(Include.NON_NULL)
@@ -392,6 +400,32 @@ public class SystemConfiguration extends AviRestResource {
   @VsoMethod
   public void setEnableCors(Boolean  enableCors) {
     this.enableCors = enableCors;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Host header check.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
+   * @return enableHostHeaderCheck
+   */
+  @VsoMethod
+  public Boolean getEnableHostHeaderCheck() {
+    return enableHostHeaderCheck;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Host header check.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
+   * @param enableHostHeaderCheck set the enableHostHeaderCheck.
+   */
+  @VsoMethod
+  public void setEnableHostHeaderCheck(Boolean  enableHostHeaderCheck) {
+    this.enableHostHeaderCheck = enableHostHeaderCheck;
   }
 
   /**
@@ -797,6 +831,56 @@ public class SystemConfiguration extends AviRestResource {
     return this;
   }
 
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Trusted host profiles for host header validation.
+   * Only function when enable_host_header_check is set to true.
+   * It is a reference to an object of type trustedhostprofile.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return trustedHostProfilesRefs
+   */
+  @VsoMethod
+  public List<String> getTrustedHostProfilesRefs() {
+    return trustedHostProfilesRefs;
+  }
+
+  /**
+   * This is the setter method. this will set the trustedHostProfilesRefs
+   * Trusted host profiles for host header validation.
+   * Only function when enable_host_header_check is set to true.
+   * It is a reference to an object of type trustedhostprofile.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return trustedHostProfilesRefs
+   */
+  @VsoMethod
+  public void setTrustedHostProfilesRefs(List<String>  trustedHostProfilesRefs) {
+    this.trustedHostProfilesRefs = trustedHostProfilesRefs;
+  }
+
+  /**
+   * This is the setter method this will set the trustedHostProfilesRefs
+   * Trusted host profiles for host header validation.
+   * Only function when enable_host_header_check is set to true.
+   * It is a reference to an object of type trustedhostprofile.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return trustedHostProfilesRefs
+   */
+  @VsoMethod
+  public SystemConfiguration addTrustedHostProfilesRefsItem(String trustedHostProfilesRefsItem) {
+    if (this.trustedHostProfilesRefs == null) {
+      this.trustedHostProfilesRefs = new ArrayList<String>();
+    }
+    this.trustedHostProfilesRefs.add(trustedHostProfilesRefsItem);
+    return this;
+  }
+
 /**
    * This is the getter method this will return the attribute value.
    * Avi controller URL of the object.
@@ -904,7 +988,9 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.hostKeyAlgorithmExclude, objSystemConfiguration.hostKeyAlgorithmExclude)&&
   Objects.equals(this.kexAlgorithmExclude, objSystemConfiguration.kexAlgorithmExclude)&&
   Objects.equals(this.rekeyVolumeLimit, objSystemConfiguration.rekeyVolumeLimit)&&
-  Objects.equals(this.rekeyTimeLimit, objSystemConfiguration.rekeyTimeLimit);
+  Objects.equals(this.rekeyTimeLimit, objSystemConfiguration.rekeyTimeLimit)&&
+  Objects.equals(this.enableHostHeaderCheck, objSystemConfiguration.enableHostHeaderCheck)&&
+  Objects.equals(this.trustedHostProfilesRefs, objSystemConfiguration.trustedHostProfilesRefs);
 }
 
 @Override
@@ -920,6 +1006,7 @@ public String toString() {
         sb.append("    dockerMode: ").append(toIndentedString(dockerMode)).append("\n");
         sb.append("    emailConfiguration: ").append(toIndentedString(emailConfiguration)).append("\n");
         sb.append("    enableCors: ").append(toIndentedString(enableCors)).append("\n");
+        sb.append("    enableHostHeaderCheck: ").append(toIndentedString(enableHostHeaderCheck)).append("\n");
         sb.append("    fipsMode: ").append(toIndentedString(fipsMode)).append("\n");
         sb.append("    globalTenantConfig: ").append(toIndentedString(globalTenantConfig)).append("\n");
         sb.append("    hostKeyAlgorithmExclude: ").append(toIndentedString(hostKeyAlgorithmExclude)).append("\n");
@@ -935,6 +1022,7 @@ public String toString() {
         sb.append("    snmpConfiguration: ").append(toIndentedString(snmpConfiguration)).append("\n");
         sb.append("    sshCiphers: ").append(toIndentedString(sshCiphers)).append("\n");
         sb.append("    sshHmacs: ").append(toIndentedString(sshHmacs)).append("\n");
+        sb.append("    trustedHostProfilesRefs: ").append(toIndentedString(trustedHostProfilesRefs)).append("\n");
             sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
         sb.append("    welcomeWorkflowComplete: ").append(toIndentedString(welcomeWorkflowComplete)).append("\n");
       sb.append("}");
