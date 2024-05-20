@@ -52,6 +52,10 @@ public class SaasLicensingStatus extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private Float reserveServiceUnits;
 
+    @JsonProperty("state")
+    @JsonInclude(Include.NON_NULL)
+    private String state;
+
 
 
   /**
@@ -236,6 +240,34 @@ public class SaasLicensingStatus extends AviRestResource {
     this.reserveServiceUnits = reserveServiceUnits;
   }
 
+  /**
+   * This is the getter method this will return the attribute value.
+   * Saas license request status.
+   * Enum options - SUBSCRIPTION_NONE, SUBSCRIPTION_SUCCESS, SUBSCRIPTION_FAILED, SUBSCRIPTION_IN_PROGRESS.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return state
+   */
+  @VsoMethod
+  public String getState() {
+    return state;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Saas license request status.
+   * Enum options - SUBSCRIPTION_NONE, SUBSCRIPTION_SUCCESS, SUBSCRIPTION_FAILED, SUBSCRIPTION_IN_PROGRESS.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param state set the state.
+   */
+  @VsoMethod
+  public void setState(String  state) {
+    this.state = state;
+  }
+
 
 
 @Override
@@ -253,7 +285,8 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.connected, objSaasLicensingStatus.connected)&&
   Objects.equals(this.message, objSaasLicensingStatus.message)&&
   Objects.equals(this.publicKey, objSaasLicensingStatus.publicKey)&&
-  Objects.equals(this.expired, objSaasLicensingStatus.expired);
+  Objects.equals(this.expired, objSaasLicensingStatus.expired)&&
+  Objects.equals(this.state, objSaasLicensingStatus.state);
 }
 
 @Override
@@ -267,6 +300,7 @@ public String toString() {
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    publicKey: ").append(toIndentedString(publicKey)).append("\n");
         sb.append("    reserveServiceUnits: ").append(toIndentedString(reserveServiceUnits)).append("\n");
+        sb.append("    state: ").append(toIndentedString(state)).append("\n");
       sb.append("}");
   return sb.toString();
 }

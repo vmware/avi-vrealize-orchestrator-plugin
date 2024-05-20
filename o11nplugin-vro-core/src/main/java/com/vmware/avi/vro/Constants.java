@@ -1060,6 +1060,7 @@ public class Constants {
     public static final String FINDER_VRO_TLSFINGERPRINTMATCH = "TlsFingerprintMatch";
     public static final String FINDER_VRO_TRAFFICCLONEPROFILE = "TrafficCloneProfile";
     public static final String FINDER_VRO_TRUECLIENTIPCONFIG = "TrueClientIPConfig";
+    public static final String FINDER_VRO_TRUSTEDHOSTPROFILE = "TrustedHostProfile";
     public static final String FINDER_VRO_UDPFASTPATHPROFILE = "UDPFastPathProfile";
     public static final String FINDER_VRO_UDPPROXYPROFILE = "UDPProxyProfile";
     public static final String FINDER_VRO_URIINFO = "URIInfo";
