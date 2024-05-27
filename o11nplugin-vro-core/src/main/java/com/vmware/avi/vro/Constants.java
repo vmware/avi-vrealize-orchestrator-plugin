@@ -623,6 +623,7 @@ public class Constants {
     public static final String FINDER_VRO_LOGCONTROLLERMAPPING = "LogControllerMapping";
     public static final String FINDER_VRO_LOGMANAGERDEBUGFILTER = "LogManagerDebugFilter";
     public static final String FINDER_VRO_LOGMGRCLEANUPEVENTDETAILS = "LogMgrCleanupEventDetails";
+    public static final String FINDER_VRO_LOGMGRUBEREVENTDETAILS = "LogMgrUberEventDetails";
     public static final String FINDER_VRO_MANAGEMENTNETWORKCONFIG = "ManagementNetworkConfig";
     public static final String FINDER_VRO_MARATHONCONFIGURATION = "MarathonConfiguration";
     public static final String FINDER_VRO_MARATHONSEDEPLOYMENT = "MarathonSeDeployment";
@@ -1067,6 +1068,8 @@ public class Constants {
     public static final String FINDER_VRO_URIPARAM = "URIParam";
     public static final String FINDER_VRO_URIPARAMQUERY = "URIParamQuery";
     public static final String FINDER_VRO_URIPARAMTOKEN = "URIParamToken";
+    public static final String FINDER_VRO_UBERENUMMESSAGE1 = "UberEnumMessage1";
+    public static final String FINDER_VRO_UBERENUMMESSAGE2 = "UberEnumMessage2";
     public static final String FINDER_VRO_UPGRADECONTROLLERPARAMS = "UpgradeControllerParams";
     public static final String FINDER_VRO_UPGRADEEVENT = "UpgradeEvent";
     public static final String FINDER_VRO_UPGRADEOPSENTRY = "UpgradeOpsEntry";
