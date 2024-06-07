@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.vmware.avi.vro.model.MetricsRealTimeUpdate;
 import com.vmware.o11n.plugin.sdk.annotation.VsoFinder;
 import com.vmware.o11n.plugin.sdk.annotation.VsoMethod;
 import com.vmware.o11n.plugin.sdk.annotation.VsoObject;
@@ -27,6 +28,10 @@ public class PoolAnalyticsPolicy extends AviRestResource {
     @JsonProperty("enable_realtime_metrics")
     @JsonInclude(Include.NON_NULL)
     private Boolean enableRealtimeMetrics = false;
+
+    @JsonProperty("metrics_realtime_update")
+    @JsonInclude(Include.NON_NULL)
+    private MetricsRealTimeUpdate metricsRealtimeUpdate;
 
 
 
@@ -58,6 +63,32 @@ public class PoolAnalyticsPolicy extends AviRestResource {
     this.enableRealtimeMetrics = enableRealtimeMetrics;
   }
 
+  /**
+   * This is the getter method this will return the attribute value.
+   * Settings to turn on realtime metrics and set duration for realtime updates.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return metricsRealtimeUpdate
+   */
+  @VsoMethod
+  public MetricsRealTimeUpdate getMetricsRealtimeUpdate() {
+    return metricsRealtimeUpdate;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Settings to turn on realtime metrics and set duration for realtime updates.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param metricsRealtimeUpdate set the metricsRealtimeUpdate.
+   */
+  @VsoMethod
+  public void setMetricsRealtimeUpdate(MetricsRealTimeUpdate metricsRealtimeUpdate) {
+    this.metricsRealtimeUpdate = metricsRealtimeUpdate;
+  }
+
 
 
 @Override
@@ -69,7 +100,8 @@ public boolean equals(java.lang.Object o) {
     return false;
   }
   PoolAnalyticsPolicy objPoolAnalyticsPolicy = (PoolAnalyticsPolicy) o;
-  return   Objects.equals(this.enableRealtimeMetrics, objPoolAnalyticsPolicy.enableRealtimeMetrics);
+  return   Objects.equals(this.enableRealtimeMetrics, objPoolAnalyticsPolicy.enableRealtimeMetrics)&&
+  Objects.equals(this.metricsRealtimeUpdate, objPoolAnalyticsPolicy.metricsRealtimeUpdate);
 }
 
 @Override
@@ -77,6 +109,7 @@ public String toString() {
   StringBuilder sb = new StringBuilder();
   sb.append("class PoolAnalyticsPolicy {\n");
       sb.append("    enableRealtimeMetrics: ").append(toIndentedString(enableRealtimeMetrics)).append("\n");
+        sb.append("    metricsRealtimeUpdate: ").append(toIndentedString(metricsRealtimeUpdate)).append("\n");
       sb.append("}");
   return sb.toString();
 }
