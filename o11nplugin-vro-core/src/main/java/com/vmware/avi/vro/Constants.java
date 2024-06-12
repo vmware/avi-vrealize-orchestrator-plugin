@@ -1044,6 +1044,8 @@ public class Constants {
     public static final String FINDER_VRO_TACACSPLUSAUTHSETTINGS = "TacacsPlusAuthSettings";
     public static final String FINDER_VRO_TAG = "Tag";
     public static final String FINDER_VRO_TASKJOURNAL = "TaskJournal";
+    public static final String FINDER_VRO_TECHSUPPORTEVENT = "TechSupportEvent";
+    public static final String FINDER_VRO_TECHSUPPORTSTATUS = "TechSupportStatus";
     public static final String FINDER_VRO_TENANT = "Tenant";
     public static final String FINDER_VRO_TENANTCONFIGURATION = "TenantConfiguration";
     public static final String FINDER_VRO_TENANTLABEL = "TenantLabel";
