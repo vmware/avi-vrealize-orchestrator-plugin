@@ -24,9 +24,9 @@ import org.springframework.stereotype.Service;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class TrustedHostProfile extends AviRestResource {
-    @JsonProperty("host_list")
+    @JsonProperty("hosts")
     @JsonInclude(Include.NON_NULL)
-    private String hostList;
+    private List<String> hosts;
 
     @JsonProperty("name")
     @JsonInclude(Include.NON_NULL)
@@ -48,34 +48,58 @@ public class TrustedHostProfile extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Comma separated list of host ip(v4/v6) addresses or fqdns.
-   * Field introduced in 31.1.1.
+   * List of host ip(v4/v6) addresses or fqdns.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
+   * Minimum of 1 items required.
+   * Maximum of 20 items allowed.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return hostList
+   * @return hosts
    */
   @VsoMethod
-  public String getHostList() {
-    return hostList;
+  public List<String> getHosts() {
+    return hosts;
   }
 
   /**
-   * This is the setter method to the attribute.
-   * Comma separated list of host ip(v4/v6) addresses or fqdns.
-   * Field introduced in 31.1.1.
+   * This is the setter method. this will set the hosts
+   * List of host ip(v4/v6) addresses or fqdns.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
+   * Minimum of 1 items required.
+   * Maximum of 20 items allowed.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param hostList set the hostList.
+   * @return hosts
    */
   @VsoMethod
-  public void setHostList(String  hostList) {
-    this.hostList = hostList;
+  public void setHosts(List<String>  hosts) {
+    this.hosts = hosts;
   }
+
+  /**
+   * This is the setter method this will set the hosts
+   * List of host ip(v4/v6) addresses or fqdns.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
+   * Minimum of 1 items required.
+   * Maximum of 20 items allowed.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return hosts
+   */
+  @VsoMethod
+  public TrustedHostProfile addHostsItem(String hostsItem) {
+    if (this.hosts == null) {
+      this.hosts = new ArrayList<String>();
+    }
+    this.hosts.add(hostsItem);
+    return this;
+  }
+
 
   /**
    * This is the getter method this will return the attribute value.
    * Trustedhostprofile name.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return name
@@ -88,7 +112,7 @@ public class TrustedHostProfile extends AviRestResource {
   /**
    * This is the setter method to the attribute.
    * Trustedhostprofile name.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param name set the name.
@@ -102,7 +126,7 @@ public class TrustedHostProfile extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Tenant ref for trusted host profile.
    * It is a reference to an object of type tenant.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return tenantRef
@@ -116,7 +140,7 @@ public class TrustedHostProfile extends AviRestResource {
    * This is the setter method to the attribute.
    * Tenant ref for trusted host profile.
    * It is a reference to an object of type tenant.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param tenantRef set the tenantRef.
@@ -148,7 +172,7 @@ public class TrustedHostProfile extends AviRestResource {
   /**
    * This is the getter method this will return the attribute value.
    * Trustedhostprofile uuid.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return uuid
@@ -161,7 +185,7 @@ public class TrustedHostProfile extends AviRestResource {
   /**
    * This is the setter method to the attribute.
    * Trustedhostprofile uuid.
-   * Field introduced in 31.1.1.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param uuid set the uuid.
@@ -187,7 +211,7 @@ public boolean equals(java.lang.Object o) {
   TrustedHostProfile objTrustedHostProfile = (TrustedHostProfile) o;
   return   Objects.equals(this.uuid, objTrustedHostProfile.uuid)&&
   Objects.equals(this.name, objTrustedHostProfile.name)&&
-  Objects.equals(this.hostList, objTrustedHostProfile.hostList)&&
+  Objects.equals(this.hosts, objTrustedHostProfile.hosts)&&
   Objects.equals(this.tenantRef, objTrustedHostProfile.tenantRef);
 }
 
@@ -195,7 +219,7 @@ public boolean equals(java.lang.Object o) {
 public String toString() {
   StringBuilder sb = new StringBuilder();
   sb.append("class TrustedHostProfile {\n");
-      sb.append("    hostList: ").append(toIndentedString(hostList)).append("\n");
+      sb.append("    hosts: ").append(toIndentedString(hosts)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
             sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
