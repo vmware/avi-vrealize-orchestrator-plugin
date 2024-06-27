@@ -328,7 +328,7 @@ public class ServiceEngineGroup extends AviRestResource {
 
     @JsonProperty("gve_enabled")
     @JsonInclude(Include.NON_NULL)
-    private Boolean gveEnabled = true;
+    private Boolean gveEnabled = false;
 
     @JsonProperty("ha_mode")
     @JsonInclude(Include.NON_NULL)
@@ -3296,7 +3296,7 @@ public class ServiceEngineGroup extends AviRestResource {
    * Applies only to newly created se's.
    * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @return gveEnabled
    */
   @VsoMethod
@@ -3310,7 +3310,7 @@ public class ServiceEngineGroup extends AviRestResource {
    * Applies only to newly created se's.
    * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @param gveEnabled set the gveEnabled.
    */
   @VsoMethod
