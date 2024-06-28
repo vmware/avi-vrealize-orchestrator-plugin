@@ -853,7 +853,6 @@ public class Constants {
     public static final String FINDER_VRO_SEFAULTINJECTEXHAUSTPARAM = "SEFaultInjectExhaustParam";
     public static final String FINDER_VRO_SEFAULTINJECTSEPARAM = "SEFaultInjectSeParam";
     public static final String FINDER_VRO_SETIMETRACKERPROPERTIES = "SETimeTrackerProperties";
-    public static final String FINDER_VRO_SSLCACHEFILTER = "SSLCacheFilter";
     public static final String FINDER_VRO_SSLCERTIFICATE = "SSLCertificate";
     public static final String FINDER_VRO_SSLCERTIFICATEDESCRIPTION = "SSLCertificateDescription";
     public static final String FINDER_VRO_SSLCIPHERLIST = "SSLCipherList";
