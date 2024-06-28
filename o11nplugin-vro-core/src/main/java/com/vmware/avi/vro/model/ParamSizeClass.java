@@ -32,10 +32,15 @@ public class ParamSizeClass extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private String len;
 
+    @JsonProperty("timestamps")
+    @JsonInclude(Include.NON_NULL)
+    private List<Integer> timestamps;
+
 
 
   /**
    * This is the getter method this will return the attribute value.
+   * Indicates the number of hits for this parameter size.
    * Field introduced in 20.1.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -48,6 +53,7 @@ public class ParamSizeClass extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
+   * Indicates the number of hits for this parameter size.
    * Field introduced in 20.1.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -60,6 +66,7 @@ public class ParamSizeClass extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Indicates the size of the parameter.
    * Enum options - EMPTY, SMALL, MEDIUM, LARGE, UNLIMITED.
    * Field introduced in 20.1.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -73,6 +80,7 @@ public class ParamSizeClass extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
+   * Indicates the size of the parameter.
    * Enum options - EMPTY, SMALL, MEDIUM, LARGE, UNLIMITED.
    * Field introduced in 20.1.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -83,6 +91,50 @@ public class ParamSizeClass extends AviRestResource {
   public void setLen(String  len) {
     this.len = len;
   }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Timestamps representing the moments at which this parameter size was current.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return timestamps
+   */
+  @VsoMethod
+  public List<Integer> getTimestamps() {
+    return timestamps;
+  }
+
+  /**
+   * This is the setter method. this will set the timestamps
+   * Timestamps representing the moments at which this parameter size was current.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return timestamps
+   */
+  @VsoMethod
+  public void setTimestamps(List<Integer>  timestamps) {
+    this.timestamps = timestamps;
+  }
+
+  /**
+   * This is the setter method this will set the timestamps
+   * Timestamps representing the moments at which this parameter size was current.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return timestamps
+   */
+  @VsoMethod
+  public ParamSizeClass addTimestampsItem(Integer timestampsItem) {
+    if (this.timestamps == null) {
+      this.timestamps = new ArrayList<Integer>();
+    }
+    this.timestamps.add(timestampsItem);
+    return this;
+  }
+
 
 
 
@@ -96,7 +148,8 @@ public boolean equals(java.lang.Object o) {
   }
   ParamSizeClass objParamSizeClass = (ParamSizeClass) o;
   return   Objects.equals(this.len, objParamSizeClass.len)&&
-  Objects.equals(this.hits, objParamSizeClass.hits);
+  Objects.equals(this.hits, objParamSizeClass.hits)&&
+  Objects.equals(this.timestamps, objParamSizeClass.timestamps);
 }
 
 @Override
@@ -105,6 +158,7 @@ public String toString() {
   sb.append("class ParamSizeClass {\n");
       sb.append("    hits: ").append(toIndentedString(hits)).append("\n");
         sb.append("    len: ").append(toIndentedString(len)).append("\n");
+        sb.append("    timestamps: ").append(toIndentedString(timestamps)).append("\n");
       sb.append("}");
   return sb.toString();
 }

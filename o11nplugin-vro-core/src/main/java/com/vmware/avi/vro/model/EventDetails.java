@@ -206,6 +206,7 @@ import com.vmware.avi.vro.model.SwitchoverEventDetails;
 import com.vmware.avi.vro.model.SwitchoverFailEventDetails;
 import com.vmware.avi.vro.model.CloudSyncServices;
 import com.vmware.avi.vro.model.SystemReport;
+import com.vmware.avi.vro.model.TechSupportEvent;
 import com.vmware.avi.vro.model.TencentSetup;
 import com.vmware.avi.vro.model.LogMgrUberEventDetails;
 import com.vmware.avi.vro.model.RmUnbindVsSeEventDetails;
@@ -1056,6 +1057,10 @@ public class EventDetails extends AviRestResource {
     @JsonProperty("system_report_event_details")
     @JsonInclude(Include.NON_NULL)
     private SystemReport systemReportEventDetails;
+
+    @JsonProperty("tech_support_event")
+    @JsonInclude(Include.NON_NULL)
+    private TechSupportEvent techSupportEvent;
 
     @JsonProperty("tencent_info")
     @JsonInclude(Include.NON_NULL)
@@ -5737,6 +5742,30 @@ public class EventDetails extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return techSupportEvent
+   */
+  @VsoMethod
+  public TechSupportEvent getTechSupportEvent() {
+    return techSupportEvent;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param techSupportEvent set the techSupportEvent.
+   */
+  @VsoMethod
+  public void setTechSupportEvent(TechSupportEvent techSupportEvent) {
+    this.techSupportEvent = techSupportEvent;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return tencentInfo
@@ -6491,6 +6520,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.configSeGrpFlvUpdateDetails, objEventDetails.configSeGrpFlvUpdateDetails)&&
   Objects.equals(this.apiVersionDeprecated, objEventDetails.apiVersionDeprecated)&&
   Objects.equals(this.asyncPatchState, objEventDetails.asyncPatchState)&&
+  Objects.equals(this.techSupportEvent, objEventDetails.techSupportEvent)&&
   Objects.equals(this.sslExpireDetails, objEventDetails.sslExpireDetails)&&
   Objects.equals(this.sslExportDetails, objEventDetails.sslExportDetails)&&
   Objects.equals(this.sslRenewDetails, objEventDetails.sslRenewDetails)&&
@@ -6830,6 +6860,7 @@ public String toString() {
         sb.append("    switchoverFailDetails: ").append(toIndentedString(switchoverFailDetails)).append("\n");
         sb.append("    syncServicesInfo: ").append(toIndentedString(syncServicesInfo)).append("\n");
         sb.append("    systemReportEventDetails: ").append(toIndentedString(systemReportEventDetails)).append("\n");
+        sb.append("    techSupportEvent: ").append(toIndentedString(techSupportEvent)).append("\n");
         sb.append("    tencentInfo: ").append(toIndentedString(tencentInfo)).append("\n");
         sb.append("    uberEventDetails: ").append(toIndentedString(uberEventDetails)).append("\n");
         sb.append("    unbindVsSeDetails: ").append(toIndentedString(unbindVsSeDetails)).append("\n");
