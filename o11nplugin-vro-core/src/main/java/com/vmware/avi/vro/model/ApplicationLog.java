@@ -3219,7 +3219,8 @@ public class ApplicationLog extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Field set by datascript using avi.vs.set_session_id().
+   * If the http session module is enabled for the virtual service, this field will contain the session id created by the module.
+   * Later calls to the datascript function avi.vs.set_session_id() overwrite the value of this field with the value supplied in the function call.
    * Field introduced in 21.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -3232,7 +3233,8 @@ public class ApplicationLog extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Field set by datascript using avi.vs.set_session_id().
+   * If the http session module is enabled for the virtual service, this field will contain the session id created by the module.
+   * Later calls to the datascript function avi.vs.set_session_id() overwrite the value of this field with the value supplied in the function call.
    * Field introduced in 21.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.

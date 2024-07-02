@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 public class PoolAnalyticsPolicy extends AviRestResource {
     @JsonProperty("enable_realtime_metrics")
     @JsonInclude(Include.NON_NULL)
-    private Boolean enableRealtimeMetrics = false;
+    private Boolean enableRealtimeMetrics;
 
     @JsonProperty("metrics_realtime_update")
     @JsonInclude(Include.NON_NULL)
@@ -39,9 +39,9 @@ public class PoolAnalyticsPolicy extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Enable real time metrics for server and pool metrics eg.
    * L4_server.xxx, l7_server.xxx.
+   * Field deprecated in 31.1.1.
    * Field introduced in 18.1.5, 18.2.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @return enableRealtimeMetrics
    */
   @VsoMethod
@@ -53,9 +53,9 @@ public class PoolAnalyticsPolicy extends AviRestResource {
    * This is the setter method to the attribute.
    * Enable real time metrics for server and pool metrics eg.
    * L4_server.xxx, l7_server.xxx.
+   * Field deprecated in 31.1.1.
    * Field introduced in 18.1.5, 18.2.1.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @param enableRealtimeMetrics set the enableRealtimeMetrics.
    */
   @VsoMethod
@@ -65,7 +65,7 @@ public class PoolAnalyticsPolicy extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Settings to turn on realtime metrics and set duration for realtime updates.
+   * Enable realtime metrics and its duration.
    * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -78,7 +78,7 @@ public class PoolAnalyticsPolicy extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Settings to turn on realtime metrics and set duration for realtime updates.
+   * Enable realtime metrics and its duration.
    * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
