@@ -40,6 +40,10 @@ public class ControllerSizingLimits extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private Integer numEastWestVirtualservices;
 
+    @JsonProperty("num_pool_rt_metrics")
+    @JsonInclude(Include.NON_NULL)
+    private Integer numPoolRtMetrics;
+
     @JsonProperty("num_servers")
     @JsonInclude(Include.NON_NULL)
     private Integer numServers;
@@ -192,6 +196,32 @@ public class ControllerSizingLimits extends AviRestResource {
   @VsoMethod
   public void setNumEastWestVirtualservices(Integer  numEastWestVirtualservices) {
     this.numEastWestVirtualservices = numEastWestVirtualservices;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Maximum number of pools with realtime metrics enabled.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return numPoolRtMetrics
+   */
+  @VsoMethod
+  public Integer getNumPoolRtMetrics() {
+    return numPoolRtMetrics;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Maximum number of pools with realtime metrics enabled.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param numPoolRtMetrics set the numPoolRtMetrics.
+   */
+  @VsoMethod
+  public void setNumPoolRtMetrics(Integer  numPoolRtMetrics) {
+    this.numPoolRtMetrics = numPoolRtMetrics;
   }
 
   /**
@@ -397,6 +427,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.numClouds, objControllerSizingLimits.numClouds)&&
   Objects.equals(this.numTenants, objControllerSizingLimits.numTenants)&&
   Objects.equals(this.numWafVirtualservices, objControllerSizingLimits.numWafVirtualservices)&&
+  Objects.equals(this.numPoolRtMetrics, objControllerSizingLimits.numPoolRtMetrics)&&
   Objects.equals(this.controllerSizingCloudLimits, objControllerSizingLimits.controllerSizingCloudLimits);
 }
 
@@ -408,6 +439,7 @@ public String toString() {
         sb.append("    flavor: ").append(toIndentedString(flavor)).append("\n");
         sb.append("    numClouds: ").append(toIndentedString(numClouds)).append("\n");
         sb.append("    numEastWestVirtualservices: ").append(toIndentedString(numEastWestVirtualservices)).append("\n");
+        sb.append("    numPoolRtMetrics: ").append(toIndentedString(numPoolRtMetrics)).append("\n");
         sb.append("    numServers: ").append(toIndentedString(numServers)).append("\n");
         sb.append("    numServiceengines: ").append(toIndentedString(numServiceengines)).append("\n");
         sb.append("    numTenants: ").append(toIndentedString(numTenants)).append("\n");
