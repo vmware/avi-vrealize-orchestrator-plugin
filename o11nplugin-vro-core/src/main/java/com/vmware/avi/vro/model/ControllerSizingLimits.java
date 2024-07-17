@@ -44,6 +44,10 @@ public class ControllerSizingLimits extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private Integer numPoolRtMetrics;
 
+    @JsonProperty("num_se_rt_metrics")
+    @JsonInclude(Include.NON_NULL)
+    private Integer numSeRtMetrics;
+
     @JsonProperty("num_servers")
     @JsonInclude(Include.NON_NULL)
     private Integer numServers;
@@ -222,6 +226,32 @@ public class ControllerSizingLimits extends AviRestResource {
   @VsoMethod
   public void setNumPoolRtMetrics(Integer  numPoolRtMetrics) {
     this.numPoolRtMetrics = numPoolRtMetrics;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Maximum number of serviceengine with realtime metrics enabled.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return numSeRtMetrics
+   */
+  @VsoMethod
+  public Integer getNumSeRtMetrics() {
+    return numSeRtMetrics;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Maximum number of serviceengine with realtime metrics enabled.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param numSeRtMetrics set the numSeRtMetrics.
+   */
+  @VsoMethod
+  public void setNumSeRtMetrics(Integer  numSeRtMetrics) {
+    this.numSeRtMetrics = numSeRtMetrics;
   }
 
   /**
@@ -428,6 +458,7 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.numTenants, objControllerSizingLimits.numTenants)&&
   Objects.equals(this.numWafVirtualservices, objControllerSizingLimits.numWafVirtualservices)&&
   Objects.equals(this.numPoolRtMetrics, objControllerSizingLimits.numPoolRtMetrics)&&
+  Objects.equals(this.numSeRtMetrics, objControllerSizingLimits.numSeRtMetrics)&&
   Objects.equals(this.controllerSizingCloudLimits, objControllerSizingLimits.controllerSizingCloudLimits);
 }
 
@@ -440,6 +471,7 @@ public String toString() {
         sb.append("    numClouds: ").append(toIndentedString(numClouds)).append("\n");
         sb.append("    numEastWestVirtualservices: ").append(toIndentedString(numEastWestVirtualservices)).append("\n");
         sb.append("    numPoolRtMetrics: ").append(toIndentedString(numPoolRtMetrics)).append("\n");
+        sb.append("    numSeRtMetrics: ").append(toIndentedString(numSeRtMetrics)).append("\n");
         sb.append("    numServers: ").append(toIndentedString(numServers)).append("\n");
         sb.append("    numServiceengines: ").append(toIndentedString(numServiceengines)).append("\n");
         sb.append("    numTenants: ").append(toIndentedString(numTenants)).append("\n");
