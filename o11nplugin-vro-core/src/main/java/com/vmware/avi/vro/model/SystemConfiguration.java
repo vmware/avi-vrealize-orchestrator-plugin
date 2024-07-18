@@ -76,6 +76,10 @@ public class SystemConfiguration extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private Boolean enableHostHeaderCheck = false;
 
+    @JsonProperty("enable_telemetry")
+    @JsonInclude(Include.NON_NULL)
+    private Boolean enableTelemetry = true;
+
     @JsonProperty("fips_mode")
     @JsonInclude(Include.NON_NULL)
     private Boolean fipsMode = false;
@@ -405,7 +409,7 @@ public class SystemConfiguration extends AviRestResource {
   /**
    * This is the getter method this will return the attribute value.
    * Host header check.
-   * Field introduced in 30.2.2.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @return enableHostHeaderCheck
@@ -418,7 +422,7 @@ public class SystemConfiguration extends AviRestResource {
   /**
    * This is the setter method to the attribute.
    * Host header check.
-   * Field introduced in 30.2.2.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as false.
    * @param enableHostHeaderCheck set the enableHostHeaderCheck.
@@ -426,6 +430,32 @@ public class SystemConfiguration extends AviRestResource {
   @VsoMethod
   public void setEnableHostHeaderCheck(Boolean  enableHostHeaderCheck) {
     this.enableHostHeaderCheck = enableHostHeaderCheck;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Enables sending anonymous operational metrics to avi.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * @return enableTelemetry
+   */
+  @VsoMethod
+  public Boolean getEnableTelemetry() {
+    return enableTelemetry;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Enables sending anonymous operational metrics to avi.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as true.
+   * @param enableTelemetry set the enableTelemetry.
+   */
+  @VsoMethod
+  public void setEnableTelemetry(Boolean  enableTelemetry) {
+    this.enableTelemetry = enableTelemetry;
   }
 
   /**
@@ -837,7 +867,7 @@ public class SystemConfiguration extends AviRestResource {
    * Trusted host profiles for host header validation.
    * Only function when enable_host_header_check is set to true.
    * It is a reference to an object of type trustedhostprofile.
-   * Field introduced in 30.2.2.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Maximum of 20 items allowed.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -853,7 +883,7 @@ public class SystemConfiguration extends AviRestResource {
    * Trusted host profiles for host header validation.
    * Only function when enable_host_header_check is set to true.
    * It is a reference to an object of type trustedhostprofile.
-   * Field introduced in 30.2.2.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Maximum of 20 items allowed.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -869,7 +899,7 @@ public class SystemConfiguration extends AviRestResource {
    * Trusted host profiles for host header validation.
    * Only function when enable_host_header_check is set to true.
    * It is a reference to an object of type trustedhostprofile.
-   * Field introduced in 30.2.2.
+   * Field introduced in 22.1.7, 30.2.2, 31.1.1.
    * Maximum of 20 items allowed.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -993,7 +1023,8 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.rekeyVolumeLimit, objSystemConfiguration.rekeyVolumeLimit)&&
   Objects.equals(this.rekeyTimeLimit, objSystemConfiguration.rekeyTimeLimit)&&
   Objects.equals(this.enableHostHeaderCheck, objSystemConfiguration.enableHostHeaderCheck)&&
-  Objects.equals(this.trustedHostProfilesRefs, objSystemConfiguration.trustedHostProfilesRefs);
+  Objects.equals(this.trustedHostProfilesRefs, objSystemConfiguration.trustedHostProfilesRefs)&&
+  Objects.equals(this.enableTelemetry, objSystemConfiguration.enableTelemetry);
 }
 
 @Override
@@ -1010,6 +1041,7 @@ public String toString() {
         sb.append("    emailConfiguration: ").append(toIndentedString(emailConfiguration)).append("\n");
         sb.append("    enableCors: ").append(toIndentedString(enableCors)).append("\n");
         sb.append("    enableHostHeaderCheck: ").append(toIndentedString(enableHostHeaderCheck)).append("\n");
+        sb.append("    enableTelemetry: ").append(toIndentedString(enableTelemetry)).append("\n");
         sb.append("    fipsMode: ").append(toIndentedString(fipsMode)).append("\n");
         sb.append("    globalTenantConfig: ").append(toIndentedString(globalTenantConfig)).append("\n");
         sb.append("    hostKeyAlgorithmExclude: ").append(toIndentedString(hostKeyAlgorithmExclude)).append("\n");
