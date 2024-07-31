@@ -50,7 +50,7 @@ public class SCTPProxyProfile extends AviRestResource {
 
     @JsonProperty("receive_window")
     @JsonInclude(Include.NON_NULL)
-    private Integer receiveWindow = 256;
+    private Integer receiveWindow = 1024;
 
     @JsonProperty("reset_timeout")
     @JsonInclude(Include.NON_NULL)
@@ -209,7 +209,7 @@ public class SCTPProxyProfile extends AviRestResource {
   /**
    * This is the getter method this will return the attribute value.
    * Number of incoming sctp streams.
-   * Allowed values are 1-65535.
+   * Allowed values are 1-100.
    * Field introduced in 22.1.3.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 10.
@@ -223,7 +223,7 @@ public class SCTPProxyProfile extends AviRestResource {
   /**
    * This is the setter method to the attribute.
    * Number of incoming sctp streams.
-   * Allowed values are 1-65535.
+   * Allowed values are 1-100.
    * Field introduced in 22.1.3.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as 10.
@@ -241,7 +241,7 @@ public class SCTPProxyProfile extends AviRestResource {
    * Field introduced in 22.1.3.
    * Unit is kb.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as 256.
+   * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
    * @return receiveWindow
    */
   @VsoMethod
@@ -256,7 +256,7 @@ public class SCTPProxyProfile extends AviRestResource {
    * Field introduced in 22.1.3.
    * Unit is kb.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as 256.
+   * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
    * @param receiveWindow set the receiveWindow.
    */
   @VsoMethod
@@ -266,7 +266,7 @@ public class SCTPProxyProfile extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Sctp reset timeout.
+   * Sctp reset/shutdown guard timeout.
    * 0 means 5 times rto max.
    * Allowed values are 0-247483647.
    * Field introduced in 22.1.3.
@@ -282,7 +282,7 @@ public class SCTPProxyProfile extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Sctp reset timeout.
+   * Sctp reset/shutdown guard timeout.
    * 0 means 5 times rto max.
    * Allowed values are 0-247483647.
    * Field introduced in 22.1.3.
