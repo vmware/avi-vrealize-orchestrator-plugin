@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.vmware.avi.vro.model.DryrunInfo;
 import com.vmware.avi.vro.model.ReportOpsState;
 import com.vmware.avi.vro.model.ReportSummary;
 import com.vmware.o11n.plugin.sdk.annotation.VsoFinder;
@@ -37,6 +38,10 @@ public class SystemReport extends AviRestResource {
     @JsonProperty("downloadable")
     @JsonInclude(Include.NON_NULL)
     private Boolean downloadable = false;
+
+    @JsonProperty("dryrun_info")
+    @JsonInclude(Include.NON_NULL)
+    private DryrunInfo dryrunInfo;
 
     @JsonProperty("events")
     @JsonInclude(Include.NON_NULL)
@@ -162,6 +167,32 @@ public class SystemReport extends AviRestResource {
   @VsoMethod
   public void setDownloadable(Boolean  downloadable) {
     this.downloadable = downloadable;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Dry-run report.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return dryrunInfo
+   */
+  @VsoMethod
+  public DryrunInfo getDryrunInfo() {
+    return dryrunInfo;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Dry-run report.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param dryrunInfo set the dryrunInfo.
+   */
+  @VsoMethod
+  public void setDryrunInfo(DryrunInfo dryrunInfo) {
+    this.dryrunInfo = dryrunInfo;
   }
 
   /**
@@ -536,7 +567,8 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.summary, objSystemReport.summary)&&
   Objects.equals(this.readinessReports, objSystemReport.readinessReports)&&
   Objects.equals(this.events, objSystemReport.events)&&
-  Objects.equals(this.tasks, objSystemReport.tasks);
+  Objects.equals(this.tasks, objSystemReport.tasks)&&
+  Objects.equals(this.dryrunInfo, objSystemReport.dryrunInfo);
 }
 
 @Override
@@ -546,6 +578,7 @@ public String toString() {
       sb.append("    archiveRef: ").append(toIndentedString(archiveRef)).append("\n");
         sb.append("    controllerPatchImageRef: ").append(toIndentedString(controllerPatchImageRef)).append("\n");
         sb.append("    downloadable: ").append(toIndentedString(downloadable)).append("\n");
+        sb.append("    dryrunInfo: ").append(toIndentedString(dryrunInfo)).append("\n");
         sb.append("    events: ").append(toIndentedString(events)).append("\n");
         sb.append("    imageRef: ").append(toIndentedString(imageRef)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");

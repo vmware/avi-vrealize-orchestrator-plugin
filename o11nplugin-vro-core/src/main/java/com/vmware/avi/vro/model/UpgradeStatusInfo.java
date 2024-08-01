@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.vmware.avi.vro.model.DryrunInfo;
 import com.vmware.avi.vro.model.UpgradeOpsParam;
 import com.vmware.avi.vro.model.UpgradeOpsParam;
 import com.vmware.avi.vro.model.SeGroupStatus;
@@ -40,6 +41,10 @@ public class UpgradeStatusInfo extends AviRestResource {
     @JsonProperty("clean")
     @JsonInclude(Include.NON_NULL)
     private Boolean clean;
+
+    @JsonProperty("dryrun_info")
+    @JsonInclude(Include.NON_NULL)
+    private DryrunInfo dryrunInfo;
 
     @JsonProperty("duration")
     @JsonInclude(Include.NON_NULL)
@@ -311,6 +316,32 @@ public class UpgradeStatusInfo extends AviRestResource {
   @VsoMethod
   public void setClean(Boolean  clean) {
     this.clean = clean;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Upgrade dry-run operation details.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return dryrunInfo
+   */
+  @VsoMethod
+  public DryrunInfo getDryrunInfo() {
+    return dryrunInfo;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Upgrade dry-run operation details.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param dryrunInfo set the dryrunInfo.
+   */
+  @VsoMethod
+  public void setDryrunInfo(DryrunInfo dryrunInfo) {
+    this.dryrunInfo = dryrunInfo;
   }
 
   /**
@@ -1594,7 +1625,7 @@ public class UpgradeStatusInfo extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Upgrade operations requested.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
-   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE.
+   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
    * Field introduced in 18.2.6.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -1609,7 +1640,7 @@ public class UpgradeStatusInfo extends AviRestResource {
    * This is the setter method to the attribute.
    * Upgrade operations requested.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
-   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE.
+   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
    * Field introduced in 18.2.6.
    * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -1771,9 +1802,10 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.afterRebootTaskName, objUpgradeStatusInfo.afterRebootTaskName)&&
   Objects.equals(this.afterRebootRollbackFnc, objUpgradeStatusInfo.afterRebootRollbackFnc)&&
   Objects.equals(this.upgradeReadiness, objUpgradeStatusInfo.upgradeReadiness)&&
-  Objects.equals(this.systemReportRefs, objUpgradeStatusInfo.systemReportRefs)&&
   Objects.equals(this.remoteImageRef, objUpgradeStatusInfo.remoteImageRef)&&
   Objects.equals(this.prevRemoteImageRef, objUpgradeStatusInfo.prevRemoteImageRef)&&
+  Objects.equals(this.systemReportRefs, objUpgradeStatusInfo.systemReportRefs)&&
+  Objects.equals(this.dryrunInfo, objUpgradeStatusInfo.dryrunInfo)&&
   Objects.equals(this.tenantRef, objUpgradeStatusInfo.tenantRef)&&
   Objects.equals(this.objCloudRef, objUpgradeStatusInfo.objCloudRef)&&
   Objects.equals(this.seUpgradeEvents, objUpgradeStatusInfo.seUpgradeEvents)&&
@@ -1790,6 +1822,7 @@ public String toString() {
       sb.append("    afterRebootRollbackFnc: ").append(toIndentedString(afterRebootRollbackFnc)).append("\n");
         sb.append("    afterRebootTaskName: ").append(toIndentedString(afterRebootTaskName)).append("\n");
         sb.append("    clean: ").append(toIndentedString(clean)).append("\n");
+        sb.append("    dryrunInfo: ").append(toIndentedString(dryrunInfo)).append("\n");
         sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
         sb.append("    enablePatchRollback: ").append(toIndentedString(enablePatchRollback)).append("\n");
         sb.append("    enableRollback: ").append(toIndentedString(enableRollback)).append("\n");

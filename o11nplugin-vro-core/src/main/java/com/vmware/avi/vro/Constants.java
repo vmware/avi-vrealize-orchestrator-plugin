@@ -353,6 +353,7 @@ public class Constants {
     public static final String FINDER_VRO_DOSRATELIMITPROFILE = "DosRateLimitProfile";
     public static final String FINDER_VRO_DOSTHRESHOLD = "DosThreshold";
     public static final String FINDER_VRO_DOSTHRESHOLDPROFILE = "DosThresholdProfile";
+    public static final String FINDER_VRO_DRYRUNINFO = "DryrunInfo";
     public static final String FINDER_VRO_DSRPROFILE = "DsrProfile";
     public static final String FINDER_VRO_DYNAMICDNSRECORD = "DynamicDnsRecord";
     public static final String FINDER_VRO_EMAILCONFIGURATION = "EmailConfiguration";

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.vmware.avi.vro.model.SeGroupStatus;
+import com.vmware.avi.vro.model.UpgradeParams;
 import com.vmware.avi.vro.model.UpgradeOpsState;
 import com.vmware.o11n.plugin.sdk.annotation.VsoFinder;
 import com.vmware.o11n.plugin.sdk.annotation.VsoMethod;
@@ -14,18 +14,18 @@ import com.vmware.avi.vro.Constants;
 import org.springframework.stereotype.Service;
 
 /**
- * The OpsHistory is a POJO class extends AviRestResource that used for creating
- * OpsHistory.
+ * The DryrunInfo is a POJO class extends AviRestResource that used for creating
+ * DryrunInfo.
  *
  * @version 1.0
  * @since 
  *
  */
-@VsoObject(create = false, name = "OpsHistory")
-@VsoFinder(name = Constants.FINDER_VRO_OPSHISTORY)
+@VsoObject(create = false, name = "DryrunInfo")
+@VsoFinder(name = Constants.FINDER_VRO_DRYRUNINFO)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Service
-public class OpsHistory extends AviRestResource {
+public class DryrunInfo extends AviRestResource {
     @JsonProperty("duration")
     @JsonInclude(Include.NON_NULL)
     private Integer duration;
@@ -34,21 +34,17 @@ public class OpsHistory extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private String endTime;
 
-    @JsonProperty("ops")
+    @JsonProperty("operation")
     @JsonInclude(Include.NON_NULL)
-    private String ops;
+    private String operation;
 
-    @JsonProperty("patch_version")
+    @JsonProperty("params")
     @JsonInclude(Include.NON_NULL)
-    private String patchVersion;
+    private UpgradeParams params;
 
-    @JsonProperty("se_upgrade_events")
+    @JsonProperty("progress")
     @JsonInclude(Include.NON_NULL)
-    private List<SeUpgradeEvents> seUpgradeEvents;
-
-    @JsonProperty("seg_status")
-    @JsonInclude(Include.NON_NULL)
-    private SeGroupStatus segStatus;
+    private Integer progress = 0;
 
     @JsonProperty("start_time")
     @JsonInclude(Include.NON_NULL)
@@ -58,24 +54,28 @@ public class OpsHistory extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private UpgradeOpsState state;
 
-    @JsonProperty("statediff_ref")
+    @JsonProperty("tasks_completed")
     @JsonInclude(Include.NON_NULL)
-    private String statediffRef;
+    private Integer tasksCompleted;
+
+    @JsonProperty("total_tasks")
+    @JsonInclude(Include.NON_NULL)
+    private Integer totalTasks;
 
     @JsonProperty("upgrade_events")
     @JsonInclude(Include.NON_NULL)
     private List<EventMap> upgradeEvents;
 
-    @JsonProperty("version")
+    @JsonProperty("worker")
     @JsonInclude(Include.NON_NULL)
-    private String version;
+    private String worker;
 
 
 
   /**
    * This is the getter method this will return the attribute value.
-   * Duration of upgrade operation in seconds.
-   * Field introduced in 20.1.4.
+   * Duration of dry-run operation in seconds.
+   * Field introduced in 31.1.1.
    * Unit is sec.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -88,8 +88,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Duration of upgrade operation in seconds.
-   * Field introduced in 20.1.4.
+   * Duration of dry-run operation in seconds.
+   * Field introduced in 31.1.1.
    * Unit is sec.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -102,8 +102,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * End time of upgrade operation.
-   * Field introduced in 20.1.4.
+   * End time of dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return endTime
@@ -115,8 +115,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * End time of upgrade operation.
-   * Field introduced in 20.1.4.
+   * End time of dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param endTime set the endTime.
@@ -128,134 +128,94 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Upgrade operation performed.
+   * Dryrun operations requested.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
    * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
-   * Field introduced in 20.1.4.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return ops
+   * @return operation
    */
   @VsoMethod
-  public String getOps() {
-    return ops;
+  public String getOperation() {
+    return operation;
   }
 
   /**
    * This is the setter method to the attribute.
-   * Upgrade operation performed.
+   * Dryrun operations requested.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
    * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
-   * Field introduced in 20.1.4.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param ops set the ops.
+   * @param operation set the operation.
    */
   @VsoMethod
-  public void setOps(String  ops) {
-    this.ops = ops;
+  public void setOperation(String  operation) {
+    this.operation = operation;
   }
 
   /**
    * This is the getter method this will return the attribute value.
-   * Patch after the upgrade operation.
-   * Field introduced in 20.1.4.
+   * Parameters for performing the dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return patchVersion
+   * @return params
    */
   @VsoMethod
-  public String getPatchVersion() {
-    return patchVersion;
+  public UpgradeParams getParams() {
+    return params;
   }
 
   /**
    * This is the setter method to the attribute.
-   * Patch after the upgrade operation.
-   * Field introduced in 20.1.4.
+   * Parameters for performing the dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param patchVersion set the patchVersion.
+   * @param params set the params.
    */
   @VsoMethod
-  public void setPatchVersion(String  patchVersion) {
-    this.patchVersion = patchVersion;
+  public void setParams(UpgradeParams params) {
+    this.params = params;
   }
 
   /**
    * This is the getter method this will return the attribute value.
-   * Serviceenginegroup/se events for upgrade operation.
-   * Field introduced in 20.1.4.
+   * Dry-run operations progress which holds value between 0-100.
+   * Allowed values are 0-100.
+   * Field introduced in 31.1.1.
+   * Unit is percent.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return seUpgradeEvents
+   * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+   * @return progress
    */
   @VsoMethod
-  public List<SeUpgradeEvents> getSeUpgradeEvents() {
-    return seUpgradeEvents;
-  }
-
-  /**
-   * This is the setter method. this will set the seUpgradeEvents
-   * Serviceenginegroup/se events for upgrade operation.
-   * Field introduced in 20.1.4.
-   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return seUpgradeEvents
-   */
-  @VsoMethod
-  public void setSeUpgradeEvents(List<SeUpgradeEvents>  seUpgradeEvents) {
-    this.seUpgradeEvents = seUpgradeEvents;
-  }
-
-  /**
-   * This is the setter method this will set the seUpgradeEvents
-   * Serviceenginegroup/se events for upgrade operation.
-   * Field introduced in 20.1.4.
-   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return seUpgradeEvents
-   */
-  @VsoMethod
-  public OpsHistory addSeUpgradeEventsItem(SeUpgradeEvents seUpgradeEventsItem) {
-    if (this.seUpgradeEvents == null) {
-      this.seUpgradeEvents = new ArrayList<SeUpgradeEvents>();
-    }
-    this.seUpgradeEvents.add(seUpgradeEventsItem);
-    return this;
-  }
-
-
-  /**
-   * This is the getter method this will return the attribute value.
-   * Segroup status for the upgrade operation.
-   * Field introduced in 20.1.4.
-   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return segStatus
-   */
-  @VsoMethod
-  public SeGroupStatus getSegStatus() {
-    return segStatus;
+  public Integer getProgress() {
+    return progress;
   }
 
   /**
    * This is the setter method to the attribute.
-   * Segroup status for the upgrade operation.
-   * Field introduced in 20.1.4.
+   * Dry-run operations progress which holds value between 0-100.
+   * Allowed values are 0-100.
+   * Field introduced in 31.1.1.
+   * Unit is percent.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-   * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param segStatus set the segStatus.
+   * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+   * @param progress set the progress.
    */
   @VsoMethod
-  public void setSegStatus(SeGroupStatus segStatus) {
-    this.segStatus = segStatus;
+  public void setProgress(Integer  progress) {
+    this.progress = progress;
   }
 
   /**
    * This is the getter method this will return the attribute value.
-   * Start time of upgrade operation.
-   * Field introduced in 20.1.4.
+   * Start time of dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return startTime
@@ -267,8 +227,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Start time of upgrade operation.
-   * Field introduced in 20.1.4.
+   * Start time of dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param startTime set the startTime.
@@ -280,8 +240,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Upgrade operation status.
-   * Field introduced in 20.1.4.
+   * Current status of the dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return state
@@ -293,8 +253,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method to the attribute.
-   * Upgrade operation status.
-   * Field introduced in 20.1.4.
+   * Current status of the dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @param state set the state.
@@ -306,36 +266,60 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Record of pre/post snapshot captured for current upgrade operation.
-   * It is a reference to an object of type statediffoperation.
-   * Field introduced in 21.1.3.
+   * Completed set of tasks in the upgrade operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return statediffRef
+   * @return tasksCompleted
    */
   @VsoMethod
-  public String getStatediffRef() {
-    return statediffRef;
+  public Integer getTasksCompleted() {
+    return tasksCompleted;
   }
 
   /**
    * This is the setter method to the attribute.
-   * Record of pre/post snapshot captured for current upgrade operation.
-   * It is a reference to an object of type statediffoperation.
-   * Field introduced in 21.1.3.
+   * Completed set of tasks in the upgrade operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param statediffRef set the statediffRef.
+   * @param tasksCompleted set the tasksCompleted.
    */
   @VsoMethod
-  public void setStatediffRef(String  statediffRef) {
-    this.statediffRef = statediffRef;
+  public void setTasksCompleted(Integer  tasksCompleted) {
+    this.tasksCompleted = tasksCompleted;
   }
 
   /**
    * This is the getter method this will return the attribute value.
-   * Controller events for upgrade operation.
-   * Field introduced in 20.1.4.
+   * Total number of tasks in the upgrade operation.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @return totalTasks
+   */
+  @VsoMethod
+  public Integer getTotalTasks() {
+    return totalTasks;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Total number of tasks in the upgrade operation.
+   * Field introduced in 31.1.1.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as null.
+   * @param totalTasks set the totalTasks.
+   */
+  @VsoMethod
+  public void setTotalTasks(Integer  totalTasks) {
+    this.totalTasks = totalTasks;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
+   * Controller events for dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return upgradeEvents
@@ -347,8 +331,8 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method. this will set the upgradeEvents
-   * Controller events for upgrade operation.
-   * Field introduced in 20.1.4.
+   * Controller events for dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return upgradeEvents
@@ -360,14 +344,14 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the setter method this will set the upgradeEvents
-   * Controller events for upgrade operation.
-   * Field introduced in 20.1.4.
+   * Controller events for dry-run operation.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
    * @return upgradeEvents
    */
   @VsoMethod
-  public OpsHistory addUpgradeEventsItem(EventMap upgradeEventsItem) {
+  public DryrunInfo addUpgradeEventsItem(EventMap upgradeEventsItem) {
     if (this.upgradeEvents == null) {
       this.upgradeEvents = new ArrayList<EventMap>();
     }
@@ -378,28 +362,28 @@ public class OpsHistory extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
-   * Image after the upgrade operation.
-   * Field introduced in 20.1.4.
+   * Node on which the dry-run is performed.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @return version
+   * @return worker
    */
   @VsoMethod
-  public String getVersion() {
-    return version;
+  public String getWorker() {
+    return worker;
   }
 
   /**
    * This is the setter method to the attribute.
-   * Image after the upgrade operation.
-   * Field introduced in 20.1.4.
+   * Node on which the dry-run is performed.
+   * Field introduced in 31.1.1.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
-   * @param version set the version.
+   * @param worker set the worker.
    */
   @VsoMethod
-  public void setVersion(String  version) {
-    this.version = version;
+  public void setWorker(String  worker) {
+    this.worker = worker;
   }
 
 
@@ -412,35 +396,35 @@ public boolean equals(java.lang.Object o) {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-  OpsHistory objOpsHistory = (OpsHistory) o;
-  return   Objects.equals(this.ops, objOpsHistory.ops)&&
-  Objects.equals(this.state, objOpsHistory.state)&&
-  Objects.equals(this.version, objOpsHistory.version)&&
-  Objects.equals(this.patchVersion, objOpsHistory.patchVersion)&&
-  Objects.equals(this.segStatus, objOpsHistory.segStatus)&&
-  Objects.equals(this.upgradeEvents, objOpsHistory.upgradeEvents)&&
-  Objects.equals(this.seUpgradeEvents, objOpsHistory.seUpgradeEvents)&&
-  Objects.equals(this.startTime, objOpsHistory.startTime)&&
-  Objects.equals(this.endTime, objOpsHistory.endTime)&&
-  Objects.equals(this.duration, objOpsHistory.duration)&&
-  Objects.equals(this.statediffRef, objOpsHistory.statediffRef);
+  DryrunInfo objDryrunInfo = (DryrunInfo) o;
+  return   Objects.equals(this.state, objDryrunInfo.state)&&
+  Objects.equals(this.operation, objDryrunInfo.operation)&&
+  Objects.equals(this.params, objDryrunInfo.params)&&
+  Objects.equals(this.worker, objDryrunInfo.worker)&&
+  Objects.equals(this.startTime, objDryrunInfo.startTime)&&
+  Objects.equals(this.endTime, objDryrunInfo.endTime)&&
+  Objects.equals(this.duration, objDryrunInfo.duration)&&
+  Objects.equals(this.totalTasks, objDryrunInfo.totalTasks)&&
+  Objects.equals(this.tasksCompleted, objDryrunInfo.tasksCompleted)&&
+  Objects.equals(this.progress, objDryrunInfo.progress)&&
+  Objects.equals(this.upgradeEvents, objDryrunInfo.upgradeEvents);
 }
 
 @Override
 public String toString() {
   StringBuilder sb = new StringBuilder();
-  sb.append("class OpsHistory {\n");
+  sb.append("class DryrunInfo {\n");
       sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
         sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-        sb.append("    ops: ").append(toIndentedString(ops)).append("\n");
-        sb.append("    patchVersion: ").append(toIndentedString(patchVersion)).append("\n");
-        sb.append("    seUpgradeEvents: ").append(toIndentedString(seUpgradeEvents)).append("\n");
-        sb.append("    segStatus: ").append(toIndentedString(segStatus)).append("\n");
+        sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+        sb.append("    params: ").append(toIndentedString(params)).append("\n");
+        sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
         sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
         sb.append("    state: ").append(toIndentedString(state)).append("\n");
-        sb.append("    statediffRef: ").append(toIndentedString(statediffRef)).append("\n");
+        sb.append("    tasksCompleted: ").append(toIndentedString(tasksCompleted)).append("\n");
+        sb.append("    totalTasks: ").append(toIndentedString(totalTasks)).append("\n");
         sb.append("    upgradeEvents: ").append(toIndentedString(upgradeEvents)).append("\n");
-        sb.append("    version: ").append(toIndentedString(version)).append("\n");
+        sb.append("    worker: ").append(toIndentedString(worker)).append("\n");
       sb.append("}");
   return sb.toString();
 }
