@@ -49,6 +49,10 @@ public class UpgradeReadinessCheckObj extends AviRestResource {
     @JsonInclude(Include.NON_NULL)
     private String patchImageRef;
 
+    @JsonProperty("progress")
+    @JsonInclude(Include.NON_NULL)
+    private Integer progress = 0;
+
     @JsonProperty("start_time")
     @JsonInclude(Include.NON_NULL)
     private String startTime;
@@ -251,6 +255,36 @@ public class UpgradeReadinessCheckObj extends AviRestResource {
 
   /**
    * This is the getter method this will return the attribute value.
+   * Checks progress which holds value between 0-100.
+   * Allowed values are 0-100.
+   * Field introduced in 31.1.1.
+   * Unit is percent.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+   * @return progress
+   */
+  @VsoMethod
+  public Integer getProgress() {
+    return progress;
+  }
+
+  /**
+   * This is the setter method to the attribute.
+   * Checks progress which holds value between 0-100.
+   * Allowed values are 0-100.
+   * Field introduced in 31.1.1.
+   * Unit is percent.
+   * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+   * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+   * @param progress set the progress.
+   */
+  @VsoMethod
+  public void setProgress(Integer  progress) {
+    this.progress = progress;
+  }
+
+  /**
+   * This is the getter method this will return the attribute value.
    * Time at which execution of upgrade readiness checks was started.
    * Field introduced in 22.1.3.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -333,7 +367,7 @@ public class UpgradeReadinessCheckObj extends AviRestResource {
    * This is the getter method this will return the attribute value.
    * Upgrade operations along with type requested such as upgradesystem upgradecontroller etc.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
-   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE.
+   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
    * Field introduced in 22.1.3.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -348,7 +382,7 @@ public class UpgradeReadinessCheckObj extends AviRestResource {
    * This is the setter method to the attribute.
    * Upgrade operations along with type requested such as upgradesystem upgradecontroller etc.
    * Enum options - UPGRADE, PATCH, ROLLBACK, ROLLBACKPATCH, SEGROUP_RESUME, EVAL_UPGRADE, EVAL_PATCH, EVAL_ROLLBACK, EVAL_ROLLBACKPATCH,
-   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE.
+   * EVAL_SEGROUP_RESUME, EVAL_RESTORE, RESTORE, UPGRADE_DRYRUN.
    * Field introduced in 22.1.3.
    * Allowed in enterprise edition with any value, enterprise with cloud services edition.
    * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -379,7 +413,8 @@ public boolean equals(java.lang.Object o) {
   Objects.equals(this.imageRef, objUpgradeReadinessCheckObj.imageRef)&&
   Objects.equals(this.patchImageRef, objUpgradeReadinessCheckObj.patchImageRef)&&
   Objects.equals(this.totalChecks, objUpgradeReadinessCheckObj.totalChecks)&&
-  Objects.equals(this.checksCompleted, objUpgradeReadinessCheckObj.checksCompleted);
+  Objects.equals(this.checksCompleted, objUpgradeReadinessCheckObj.checksCompleted)&&
+  Objects.equals(this.progress, objUpgradeReadinessCheckObj.progress);
 }
 
 @Override
@@ -392,6 +427,7 @@ public String toString() {
         sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
         sb.append("    imageRef: ").append(toIndentedString(imageRef)).append("\n");
         sb.append("    patchImageRef: ").append(toIndentedString(patchImageRef)).append("\n");
+        sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
         sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
         sb.append("    state: ").append(toIndentedString(state)).append("\n");
         sb.append("    totalChecks: ").append(toIndentedString(totalChecks)).append("\n");
