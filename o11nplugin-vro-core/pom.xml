@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>vro</artifactId>
 		<groupId>com.vmware.avi</groupId>
-		<version>22.1.6.RELEASE</version>
+		<version>22.1.7.RELEASE</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -23,7 +23,7 @@
 		<dependency>
 		  <groupId>com.vmware.avi.sdk</groupId>
 		  <artifactId>avisdk</artifactId>
-		  <version>22.1.6.RELEASE</version>
+		  <version>22.1.7.RELEASE</version>
 		</dependency>
 
 		<dependency>
