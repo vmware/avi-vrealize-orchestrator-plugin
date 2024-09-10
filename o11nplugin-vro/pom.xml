@@ -10,7 +10,7 @@
 	<parent>
 		<artifactId>vro</artifactId>
 		<groupId>com.vmware.avi</groupId>
-		<version>30.2.1</version>
+		<version>30.2.2</version>
 	</parent>
 
 	<dependencies>
