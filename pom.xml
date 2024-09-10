@@ -7,7 +7,7 @@
 	<groupId>com.vmware.avi</groupId>
 	<artifactId>vro</artifactId>
 	<packaging>pom</packaging>
-	<version>30.2.1</version>
+	<version>30.2.2</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
